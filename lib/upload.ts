@@ -708,6 +708,8 @@ export class BaseUpload {
         // Remove stored fingerprint and corresponding endpoint,
         // on client errors since the file can not be found
         await this._removeFromUrlStorage()
+      } else {
+        throw new DetailedError('tus: unexpected response while resuming upload', undefined, req, res)
       }
 
       if (!this.options.endpoint) {
